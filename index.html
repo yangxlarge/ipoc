@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style></style>
+  
+  <meta name="description" content="A diffusion transformer model designed for generating videos from textual inputs">
+  <meta name="keywords" content="Text to Video, 3D Variational Autoencoder, window attention">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> IPO: Iterative Preference Optimization for Text-to-Video Generation</title>
+
+
+
+  <link href="./Text_to_video/css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./Text_to_video/bulma.min.css">
+  <link rel="stylesheet" href="./Text_to_video/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./Text_to_video/bulma-slider.min.css">
+  <link rel="stylesheet" href="./Text_to_video/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./Text_to_video/academicons.min.css">
+  <link rel="stylesheet" href="./Text_to_video/index.css">
+  <link rel="stylesheet" href="./Text_to_video/leaderboard.css">
+
+  <script type="text/javascript" src="./Text_to_video/sort-table.js" defer=""></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer="" src="./Text_to_video/fontawesome.all.min.js"></script>
+  <script src="./Text_to_video/bulma-carousel.min.js"></script>
+  <script src="./Text_to_video/bulma-slider.min.js"></script>
+  <script src="./Text_to_video/explorer-index.js"></script>
+  <script src="./Text_to_video/question_card.js"></script>
+
+  <script src="./Text_to_video/leaderboard_testmini.js"></script>  
+  <script src="./Text_to_video/output_folders.js" defer=""></script>
+  <script src="./Text_to_video/model_scores.js" defer=""></script>
+
+  <script src="./Text_to_video/data_public.js" defer=""></script>
+
+  <style>
+      .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin-top: -20px;
+        }
+    .node {
+      fill: #f8f1e4;
+      stroke: #000;
+      stroke-width: 1;
+      rx: 10;
+      ry: 10;
+    }
+    .node text {
+      font-size: 14px;
+      text-anchor: middle;
+    }
+    .link {
+      fill: none;
+      stroke: #000;
+      stroke-width: 2;
+    }
+    .badge {
+      font-size: 12px;
+    }
+  </style>
+
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold" style="display: inline-block; margin-right: 0px;">
+            <span style="vertical-align: middle">IPO</span>
+            </h1>
+          <h2 class="subtitle is-3 publication-subtitle" style="display: inline-block; margin-left: 0px;">   
+            Iterative Preference Optimization for Text-to-Video Generation 
+          </h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href=""> Xiaomeng Yang</a><sup style="">2*,</sup><sup style="color:#6fbf73;"></sup>,</span>
+            <span class="author-block">
+              <a href="">Zhiyu Tan</a><sup style="">1*,</sup><sup style="color:#6fbf73;"></sup>,</span>
+            <span class="author-block">
+              <a href=""> Xuecheng Nie</a><sup style="">3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Hao Li</a><sup style="">1,2†,</sup><sup style="color:#6fbf73;"></sup>,</span>
+            
+            
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block" style="margin-right: 15px;"><sup style="">1</sup>Fudan University,</span>
+            <span class="author-block" style="margin-right: 15px;"><sup style="">2</sup>ShangHai Academy of AI for Science</span>
+            <span class="author-block" style="margin-right: 15px;"><sup style="">3</sup>MT Lab, Meitu Inc., Beijing, China</span>
+            <span class="author-block" style="margin-right: 15px;"><sup style=""></sup>*Equal Contribution</span>
+            <!-- <span class="paper-block"><b style="color:#f41c1c">ICLR 2024 Oral</b> (85 in 7304, 1.2%)</span> -->
+          </div>
+        
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2502.02088" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Training Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">🤗</p>
+                      <!-- 🔗 -->
+                  </span>
+                  <span>Checkpoints</span>
+                </a>
+              </span> 
+              <!-- Visualization Link. -->
+              <!-- Leaderboard Link. -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+            <p>
+              Video foundation models have achieved significant advancement with the help of network upgrade as well as model scale-up. However, they are still hard to meet requirements of applications due to unsatisfied generation quality. To solve this problem, we propose to align video foundation models with human preferences from the perspective of post-training in this paper. Consequently, we introduce an Iterative Preference Optimization strategy to enhance generated video quality by incorporating human feedback. Specifically, IPO exploits a critic model to justify video generations for pairwise ranking as in Direct Preference Optimization or point-wise scoring as in Kahneman-Tversky Optimization. Given this, IPO optimizes video foundation models with guidance of signals from preference feedback, which helps improve generated video quality in subject consistency, motion smoothness and aesthetic quality, etc. In addition, IPO incorporates the critic model with the multi-modality large language model, which enables it to automatically assign preference labels without need of retraining or relabeling. In this way, IPO can efficiently perform multi-round preference optimization in an iterative manner, without the need of tediously manual labeling. Comprehensive experiments demonstrate that the proposed IPO can effectively improve the video generation quality of a pretrained model and help a model with only 2B parameters surpass the one with 5B parameters. Besides, IPO achieves new state-of-the-art performance on VBench benchmark. We will release our source codes, models as well as dataset to advance future research and applications
+            </p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-centered" style="margin-bottom: 90px;">
+      <div class="content has-text-centered">
+        <img src="./Text_to_video/Figure2_01.png" alt="data-overview" style="max-width: 55%;">
+        <p> 
+          <b>Figure 1.Iterative Preference Optimization(IPO) Network Architecture.</b> <br>
+        </p> 
+      </div>
+    </div>
+
+    <!--/ Abstract. -->
+
+</section>
+
+</div></div></section>
+
+
+</body></html>
